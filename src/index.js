@@ -214,6 +214,19 @@ export default function init (config) {
           security: securities.indexOf('remove') > -1 ? security : {}
         });
       }
+      
+      if (typeof doc.path !== 'undefined') {
+        for (var k in pathObj[withoutIdKey]) {
+          if (typeof doc.path[k] !== 'undefined') {
+            Object.assign(pathObj[withoutIdKey][k], doc.path[k]);
+          }
+        }
+        for (var k in pathObj[withIdKey]) {
+          if (typeof doc.path[k] !== 'undefined') {
+            Object.assign(pathObj[withIdKey][k], doc.path[k]);
+          }
+        }
+      }
 
       rootDoc.paths = pathObj;
 
